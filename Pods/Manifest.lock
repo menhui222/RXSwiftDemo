@@ -1,0 +1,41 @@
+PODS:
+  - Alamofire (3.2.1)
+  - RxBlocking (2.2.0):
+    - RxSwift (~> 2.2)
+  - RxCocoa (2.2.0):
+    - RxSwift (~> 2.2)
+  - RxSwift (2.2.0)
+  - SnapKit (0.20.0)
+  - SwiftyJSON (2.3.2)
+  - WeiboSDK (3.1.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.2.1)
+  - RxBlocking (~> 2.2.0)
+  - RxCocoa (~> 2.2.0)
+  - RxSwift (~> 2.2.0)
+  - SnapKit (~> 0.20.0)
+  - SwiftyJSON
+  - WeiboSDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk.git`)
+
+EXTERNAL SOURCES:
+  WeiboSDK:
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
+
+CHECKOUT OPTIONS:
+  WeiboSDK:
+    :commit: 6031a8da4ce17867ff5887b8dfc59ea45930274e
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
+
+SPEC CHECKSUMS:
+  Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  RxBlocking: 5bbc826774c4290effa8fe070841e9d45e864639
+  RxCocoa: 42efb7a7145a8d1d5878e94ce48a580d29e0c796
+  RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
+  SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  WeiboSDK: bceab625ec59b7039ba721cc4ba9f5868804f63e
+
+PODFILE CHECKSUM: a5cceebecff4e5c467984b111944e0923dd8e779
+
+COCOAPODS: 1.0.1
