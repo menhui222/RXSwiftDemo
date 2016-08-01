@@ -13,9 +13,9 @@ import RxBlocking
 import Alamofire
 import SwiftyJSON
 
-let minUsernameLength = 5
+let minUsernameLength = 4
 let maxUsernameLength = 10
-let minPasswordLength = 5
+let minPasswordLength = 6
 let maxPasswordLength = 16
 
 
@@ -45,11 +45,11 @@ class LoginViewModel:NSObject{
     
         
         //用户
-        userNameValid = input.userName.replay(1).map({ (userName) -> Bool in
+        userNameValid = input.userName.map({ (userName) -> Bool in
             return  (userName.characters.count > minUsernameLength&&userName.characters.count < maxUsernameLength)
         })
         // 密码
-        passwordValid = input.password.replay(1).map({ (password) -> Bool in
+        passwordValid = input.password.map({ (password) -> Bool in
             return  (password.characters.count > minPasswordLength&&password.characters.count < maxPasswordLength)
         })
         // 是否登录
