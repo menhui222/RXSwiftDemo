@@ -20,6 +20,57 @@ RXSwift登陆及第三方登陆 MMVV框架 以及Alamofire请求部分的封装
 	        }
 	    }
 	}
+	  func responseJSON()-> Observable<Result<JSON>> {
+        func anonymousErrorCatch(response: Response<AnyObject, NSError>) throws -> AnyObject{
+            if let _ = response.result.error{
+                print(response.result.error)
+                throw FailureType.Failed(message: "网络连接失败", code: -1)
+                //IaskuErrorType.NoNetwork
+                //NSError(domain: "网络连接失败", code: -1, userInfo: nil)
+            }
+            guard let dic = response.result.value else{
+                throw FailureType.Failed(message: "返回数据为空", code: -1)
+                //IaskuErrorType.NoData
+                //NSError(domain: "接口返回数据为空", code: -1, userInfo: nil)
+            }
+            print(dic)
+            return dic
+        }
+
+        return Observable<Result<JSON>>.create({ (o) -> Disposable in
+            print("===============请求开始================")
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            self.responseJSON { (res) -> Void in
+                defer{
+                    print(res.request?.URLString)
+                    print(res.timeline)
+                    print(res.request?.allHTTPHeaderFields)
+                    if let body = res.request?.HTTPBody{
+                        print(String(data: body, encoding: NSUTF8StringEncoding))
+                    }
+                    print(res.result.value)
+                    print("===============请求结束================")
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                }
+                do{
+                    let  result = try anonymousErrorCatch(res)
+                    let json = JSON(result)
+                    o.onNext(Result.Success(json))
+                    
+                    
+                }catch(let errorType){
+                     o.onNext(Result.Failure(errorType))
+                }
+            }
+            
+            
+            return AnonymousDisposable{
+                self.cancel()
+            }
+        })
+    }
+  
+
 使用	
 	
            Alamofire.request(.GET, kWeiboAPIUsersUrl, parameters: [kWeiboAPIkeyUid:userID,kWeiboAPIkeyAccess_Token:accessToken]).responseJSON().map({ (result) -> Result<UserConvertible> in
