@@ -163,7 +163,7 @@ class LoginViewModel:NSObject{
         
            return Alamofire.request(.GET, kWeiboAPIUsersUrl, parameters: [kWeiboAPIkeyUid:userID,kWeiboAPIkeyAccess_Token:accessToken]).responseJSON().map({ (result) -> Result<UserConvertible> in
             //本来想把解析封装进去的 原谅我出现了一小点点问题，我无法解决的问题
-            //extension Observable where Element : Result<JSON>  对Observable<Observable>进行extension怎么实现
+            //extension Observable where Element : Result<JSON>  对Observable<Result<JSON>>进行extension怎么实现
                 switch result{
                 case Result.Success(let json) :
                     let userDetail = SinaUserDetail(json: json)
