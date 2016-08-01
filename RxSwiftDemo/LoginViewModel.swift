@@ -64,6 +64,8 @@ class LoginViewModel:NSObject{
             ($0,$1)
         }
     
+    
+        //如果你之前用过rac那么你的事件想要用RACCommand那么rxswift也有请pod Action  我也是后来发现action
       loginIn = input.loginTap.withLatestFrom(usernameAndPassword).flatMapLatest{ (userName,password) -> Observable<Bool> in
         return Observable<Bool>.create({ (subscribe) -> Disposable in
         

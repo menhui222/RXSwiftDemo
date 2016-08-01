@@ -10,6 +10,7 @@ import Alamofire
 import RxSwift
 import SwiftyJSON
 
+//对于结果返回的设计还有一个过程 RXsiwft不用轻易发送ERROR因为一旦发送失败该信号的绑定都解除了 就是这个信号销毁了所以下次点击的时候就不会发送信号了  所以我在网上前找到这个方法，至于rxswift的设计有他的用意  
 enum Result<T>  {
     case Success(T)
     case Failure(ErrorType)
